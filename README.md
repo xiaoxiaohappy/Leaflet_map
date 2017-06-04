@@ -1,6 +1,4 @@
-#first test
-
-[一个简单的地图呈现](https://xiaoxiaohappy.github.io/Leaflet_map/test//index.html)
+[一个简单的地图呈现](https://xiaoxiaohappy.github.io/Leaflet_map/test/index.html)
 
 [加marker 、circle 、polygon](https://xiaoxiaohappy.github.io/Leaflet_map/test/index_markers.html)
 
@@ -10,6 +8,6 @@
 
 [不同的zoom-levels](https://xiaoxiaohappy.github.io/Leaflet_map/test/zoom-levels/index.html)
 
-[地图上面绘制小饼图](https://xiaoxiaohappy.github.io/Leaflet_map/test/Overlay Display/小饼图.html)
+[地图上面绘制小饼图](https://xiaoxiaohappy.github.io/Leaflet_map/test/Overlay%20Display/小饼图.html)
 
 
