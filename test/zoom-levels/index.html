@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>练习zoom-levels</title>
+    <link rel="stylesheet" href="../../public/leaflet/leaflet.css"/>
+    <script src="../../public/leaflet/leaflet.js"></script>
+
+
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        #mapid {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="mapid"></div>
+
+    <script>
+        <!--Lower zoom levels means that the map shows entire continents, while higher zoom levels means that the map can show details of a city-->
+        var map = L.map('mapid', {
+            minZoom: 0,
+            maxZoom: 2  //Most tile services offer tiles up to zoom level 18, depending on their coverage.
+        });
+
+        var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        }).addTo(map);
+
+        map.setView([0, 0], 0);
+
+
+
+        setInterval(function(){
+            map.setZoom(0);
+            setTimeout(function(){
+                map.setZoom(1);  //变化zoom-levels
+            }, 2000);
+        }, 4000);
+    </script>
+</body>
+</html>

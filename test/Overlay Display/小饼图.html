@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小饼图</title>
+    <!--http://leafletjs.com/plugins.html#dataviz     （Leaflet Data Visualization Framework一栏)-->
+    <link rel="stylesheet" href="../../public/leaflet/leaflet.css"/>
+    <link rel="stylesheet" href="../../public/leaflet/dvf.css"/>
+    <!--<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>-->
+    <script src="../../public/leaflet/leaflet.js"></script>
+    <script src="../../public/leaflet/leaflet-dvf.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        #mapid {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="mapid"></div>
+<script>
+    var mymap = L.map('mapid').setView([39.55, 116.24], 10);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        id: 'mapbox.streets'
+    }).addTo(mymap);
+
+    var colorValue = Math.random() * 360;
+    var options = {
+        color: '#000',
+        weight: 1,
+        fillColor: 'hsl(' + colorValue + ',100%,50%)',
+        radius: 20,
+        fillOpacity: 0.7,
+        rotation: 0.0,
+        position: {
+            x: 0,
+            y: 0
+        },
+        offset: 0,
+        numberOfSides: 50,
+        barThickness: 10
+    };
+
+    options.data = {
+        'dataPoint1': Math.random() * 20,
+        'dataPoint2': Math.random() * 20,
+        'dataPoint3': Math.random() * 20,
+        'dataPoint4': Math.random() * 20
+    };
+
+    options.chartOptions = {
+        'dataPoint1': {
+            fillColor: '#F1EEF6',
+            minValue: 0,
+            maxValue: 20,
+            maxHeight: 20,
+            displayText: function (value) {
+                return value.toFixed(2);
+            }
+        },
+        'dataPoint2': {
+            fillColor: '#BDC9E1',
+            minValue: 0,
+            maxValue: 20,
+            maxHeight: 20,
+            displayText: function (value) {
+                return value.toFixed(2);
+            }
+        },
+        'dataPoint3': {
+            fillColor: '#74A9CF',
+            minValue: 0,
+            maxValue: 20,
+            maxHeight: 20,
+            displayText: function (value) {
+                return value.toFixed(2);
+            }
+        },
+        'dataPoint4': {
+            fillColor: '#0570B0',
+            minValue: 0,
+            maxValue: 20,
+            maxHeight: 20,
+            displayText: function (value) {
+                return value.toFixed(2);
+            }
+        }
+    };
+
+    var pieChartMarker = new L.PieChartMarker(new L.LatLng(39.55, 116.24), options);
+    pieChartMarker.addTo(mymap);
+</script>
+
+</body>
+</html>

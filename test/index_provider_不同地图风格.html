@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>不同的地图风格，引用leaflet-providers的js库</title>
+
+
+    <link rel="stylesheet" href="../public/leaflet/leaflet.css"/>
+    <script src="../public/leaflet/leaflet.js"></script>
+    <script src="../public/leaflet/leaflet-providers.js"></script>
+
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        #mapid {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="mapid"></div>
+
+<script>
+    var map = L.map('mapid', {
+        minZoom: 0,
+        maxZoom: 10
+    });
+
+
+    //改变第一个参数，就可以改变地图的风格（参考风格 http://leaflet-extras.github.io/leaflet-providers/preview/index.html）
+    var positron = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    }).addTo(map);
+
+    map.setView([0, 0], 0);
+
+
+</script>
+</body>
+</html>

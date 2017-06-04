@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>使用Leaflet画的第一个地图</title>
 
-    <link rel="stylesheet" href="../leaflet/leaflet.css"/>
-    <script src="../leaflet/leaflet.js"></script>
+    <link rel="stylesheet" href="../public/leaflet/leaflet.css"/>
+    <script src="../public/leaflet/leaflet.js"></script>
 
     <style>
         body,html{
@@ -25,14 +25,22 @@
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         maxZoom: 18,
-
-//        地图右下角标签
-//        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-//        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-//        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-
         id: 'mapbox.streets'
     }).addTo(mymap);
+
+
+
+
+    //点击事件  popup被点击地方的经纬度
+    var popup = L.popup();
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(mymap);
+    }
+    mymap.on('click', onMapClick);
 </script>
 
 </body>
