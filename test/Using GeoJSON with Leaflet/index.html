@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用GeoJSON---</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
+    <style>
+        body,html{
+            height:100%;
+        }
+        #mapid {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="mapid"></div>
+<script>
+    var map = L.map('mapid').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 5,
+        id: 'mapbox.streets'
+    }).addTo(map);
+
+
+    //画点
+    var geojsonFeature = {
+        "type": "Feature",
+        "properties": {
+            "name": "Coors Field",
+            "amenity": "Baseball Stadium",
+            "popupContent": "This is where the Rockies play!"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [51.505, -0.09]
+        }
+    };
+    L.geoJSON(geojsonFeature).addTo(map);
+
+
+
+    //画线
+    var myLines = [{
+        "type": "LineString",
+        "coordinates": [[-100, 40], [-105, 45], [-110, 55]]
+    }, {
+        "type": "LineString",
+        "coordinates": [[-105, 40], [-110, 45], [-115, 55]]
+    }];
+    var myStyle = {
+        "color": "#ff7800",
+        "weight": 5,
+        "opacity": 0.65
+    };
+
+    L.geoJSON(myLines, {
+        style: myStyle
+    }).addTo(map);
+
+
+
+
+    //画多边形
+    var states = [{
+        "type": "Feature",
+        "properties": {"party": "Republican"},
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+                [-104.05, 48.99],
+                [-97.22,  48.98],
+                [-96.58,  45.94],
+                [-104.03, 45.94],
+                [-104.05, 48.99]
+            ]]
+        }
+    }, {
+        "type": "Feature",
+        "properties": {"party": "Democrat"},
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [[
+                [-109.05, 41.00],
+                [-102.06, 40.99],
+                [-102.03, 36.99],
+                [-109.04, 36.99],
+                [-109.05, 41.00]
+            ]]
+        }
+    }];
+    L.geoJSON(states, {
+        style: function(feature) {
+            switch (feature.properties.party) {
+                case 'Republican': return {color: "#ff0000"};
+                case 'Democrat':   return {color: "#0000ff"};
+            }
+        }
+    }).addTo(map);
+
+
+
+
+
+</script>
+
+</body>
+</html>
