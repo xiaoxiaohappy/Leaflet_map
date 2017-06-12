@@ -14,12 +14,15 @@
 
 [不同的zoom-levels](https://xiaoxiaohappy.github.io/Leaflet_map/test/zoom-levels/index.html)
 
+<<<<<<< HEAD
 # Markers With Custom Icons
 
 [绘制定制的icon](https://xiaoxiaohappy.github.io/Leaflet_map/test/Markers%20With%20Custom%20Icons/index.html)
 
 [绘制 "多个" 定制的icon_添加类](https://xiaoxiaohappy.github.io/Leaflet_map/test/Markers%20With%20Custom%20Icons/index_绘制多个定制icon_类.html)
 
+=======
+>>>>>>> f5d0fca92fcb220e2b684c36e492c3f29d7555d5
 # Overlay Display
 
 [地图上面绘制小饼图](https://xiaoxiaohappy.github.io/Leaflet_map/test/Overlay%20Display/小饼图.html)
