@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制多个定制的icon，制作类</title>
+    <link rel="stylesheet" href="../../public/leaflet/leaflet.css"/>
+    <script src="../../public/leaflet/leaflet.js"></script>
+
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        #mapid {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="mapid"></div>
+<script>
+    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        id: 'mapbox.streets'
+    }).addTo(mymap);
+
+    var LeafIcon = L.Icon.extend({
+        options: {
+            shadowUrl: 'leaf-shadow.png',
+            iconSize:     [38, 95],
+            shadowSize:   [50, 64],
+            iconAnchor:   [22, 94],
+            shadowAnchor: [4, 62],
+            popupAnchor:  [-3, -76]
+        }
+    });
+
+    var greenIcon = new LeafIcon({iconUrl: 'leaf-green.png'}),
+        redIcon = new LeafIcon({iconUrl: 'leaf-red.png'}),
+        orangeIcon = new LeafIcon({iconUrl: 'leaf-orange.png'});
+
+    L.marker([51.5, -0.09], {icon: greenIcon}).bindPopup("I am a green leaf.").addTo(mymap);
+    L.marker([51.495, -0.083], {icon: redIcon}).bindPopup("I am a red leaf.").addTo(mymap);
+    L.marker([51.49, -0.1], {icon: orangeIcon}).bindPopup("I am an orange leaf.").addTo(mymap);
+</script>
+</body>
+</html>
